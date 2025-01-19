@@ -6,10 +6,20 @@ const quotes = [
     "Don’t stop when you’re tired. Stop when you’re done."
 ];
 
+// Références aux éléments HTML
 const quoteElement = document.getElementById('quote');
-const button = document.getElementById('generate');
+const generateButton = document.getElementById('generate');
+const shareButton = document.getElementById('share');
 
-button.addEventListener('click', () => {
+// Générer une citation aléatoire
+generateButton.addEventListener('click', () => {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     quoteElement.textContent = quotes[randomIndex];
+});
+
+// Partager la citation sur Twitter
+shareButton.addEventListener('click', () => {
+    const quote = quoteElement.textContent;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quote)}&hashtags=Quotes,Inspiration`;
+    window.open(twitterUrl, '_blank');
 });
